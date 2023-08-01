@@ -29,14 +29,18 @@ RUN npm ci --only=production && npm cache clean --force
 #### dev ####
 FROM base as dev
 ENV NODE_ENV=development
-COPY --chown=node:node . .
 RUN npm install --only=development && npm cache clean --force
 CMD ["npm", "run", "start:dev"]
+
+### builder ###
+FROM base as build
+RUN npm install --only=development && npm cache clean --force
+COPY --chown=node:node . .
+RUN npm run build
 
 #### prod ####
 FROM base as prod
 ENV NODE_ENV=production
-COPY --chown=node:node . .
-RUN npm run build
+COPY --chown=node:node --from=build /app/dist ./dist
 ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD ["npm", "run", "start:prod"]
