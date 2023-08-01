@@ -27,7 +27,6 @@ COPY --chown=node:node package*.json yarn*.lock ./
 RUN npm ci --only=production && npm cache clean --force
 
 #### dev ####
-# no source to be added, and assumes bind mount
 FROM base as dev
 ENV NODE_ENV=development
 COPY --chown=node:node . .
