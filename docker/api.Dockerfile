@@ -26,11 +26,10 @@ USER node
 COPY --chown=node:node package*.json yarn*.lock ./
 RUN npm ci --only=production && npm cache clean --force
 
-#### dev ####
-FROM base as dev
-ENV NODE_ENV=development
+#### ci ####
+FROM base as ci
 RUN npm install --only=development && npm cache clean --force
-CMD ["npm", "run", "start:dev"]
+CMD ["nest", "start"]
 
 ### builder ###
 FROM base as build
@@ -40,7 +39,6 @@ RUN npm run build
 
 #### prod ####
 FROM base as prod
-ENV NODE_ENV=production
 COPY --chown=node:node --from=build /app/dist ./dist
 ENTRYPOINT ["/usr/bin/tini", "--"]
-CMD ["npm", "run", "start:prod"]
+CMD ["node", "dist/main"]
