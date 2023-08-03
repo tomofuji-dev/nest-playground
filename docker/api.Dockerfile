@@ -5,7 +5,7 @@ FROM ubuntu:focal-20220531 as base
 # Avoid running nodejs process as PID 1 (use tini)
 RUN apt-get update \
     && apt-get -qq install -y --no-install-recommends \
-    tini \
+    tini postgresql-client\
     && rm -rf /var/lib/apt/lists/*
 
 # copy node binaries from node image
@@ -29,7 +29,11 @@ RUN npm ci --only=production && npm cache clean --force
 #### ci ####
 FROM base as ci
 RUN npm install --only=development && npm cache clean --force
-CMD ["nest", "start"]
+COPY --chown=node:node . .
+RUN chmod +x ./docker/wait-for-postgres.sh ./docker/ci.entrypoint.sh
+
+ENTRYPOINT ["/usr/bin/tini", "--"]
+CMD ./docker/wait-for-postgres.sh $DB_HOST ./docker/ci.entrypoint.sh
 
 ### builder ###
 FROM base as build
