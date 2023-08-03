@@ -26,7 +26,7 @@ USER node
 COPY --chown=node:node package*.json yarn*.lock ./
 RUN npm ci --only=production && npm cache clean --force
 
-### builder ###
+### build ###
 FROM base as build
 RUN npm install --only=development && npm cache clean --force
 COPY --chown=node:node . .
@@ -40,10 +40,8 @@ ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD ./docker/wait-for-postgres.sh $DB_HOST ./docker/ci.entrypoint.sh
 
 #### prod ####
-FROM base as prod
-COPY --chown=node:node --from=build /app/dist ./dist
-COPY --chown=node:node ./docker/wait-for-postgres.sh ./wait-for-postgres.sh
-RUN chmod +x ./wait-for-postgres.sh
+FROM build as prod
+RUN chmod +x ./docker/wait-for-postgres.sh ./docker/prod.entrypoint.sh
 
 ENTRYPOINT ["/usr/bin/tini", "--"]
-CMD ./wait-for-postgres.sh $DB_HOST node dist/main
+CMD ./docker/wait-for-postgres.sh $DB_HOST ./docker/prod.entrypoint.sh
