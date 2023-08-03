@@ -33,14 +33,6 @@ COPY --chown=node:node . .
 RUN npm run build
 # prisma migrate
 
-### dev (prisma) ###
-FROM base as prisma
-COPY --chown=node:node ./docker/wait-for-postgres.sh ./wait-for-postgres.sh
-RUN chmod +x ./wait-for-postgres.sh
-
-ENTRYPOINT ["/usr/bin/tini", "--"]
-CMD ./wait-for-postgres.sh db
-
 #### ci ####
 FROM build as ci
 RUN chmod +x ./docker/wait-for-postgres.sh ./docker/ci.entrypoint.sh
