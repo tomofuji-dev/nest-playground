@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
     env_file:
-      - ./.env/.env.ci
+      - ./.env/.env.prod
 
   db:
     container_name: db_ci
@@ -17,7 +17,7 @@ services:
       context: .
       dockerfile: ./docker/db.Dockerfile
     env_file:
-      - ./.env/.env.ci
+      - ./.env/.env.prod
     volumes:
       - db-ci:/var/lib/postgresql/data
 
