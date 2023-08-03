@@ -5,6 +5,9 @@ set -e
 
 export PATH="./node_modules/.bin:$PATH"
 
+# migration
+prisma migrate deploy
+
 # 型テスト
 tsc --noEmit
 

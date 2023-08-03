@@ -31,7 +31,6 @@ FROM base as build
 RUN npm install --only=development && npm cache clean --force
 COPY --chown=node:node . .
 RUN npm run build
-# prisma migrate
 
 #### ci ####
 FROM build as ci
