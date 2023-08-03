@@ -4,7 +4,7 @@ services:
     container_name: api_prod
     build:
       context: .
-      dockerfile: ./docker/api.Dockerfile
+      dockerfile: ./docker/node.Dockerfile
       target: prod
     depends_on:
       - db
