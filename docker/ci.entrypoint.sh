@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export PATH="./node_modules/.bin:$PATH"
+
 # 型テスト
 tsc --noEmit
 
@@ -10,9 +12,7 @@ npm run lint
 npm run build
 
 # unit test
-jest
+env-cmd -f ./.env/.env.ci jest
 
 # e2e test
-jest --config ./test/jest-e2e.json
-
-/bin/bash
+env-cmd -f ./.env/.env.ci jest --config ./test/jest-e2e.json
