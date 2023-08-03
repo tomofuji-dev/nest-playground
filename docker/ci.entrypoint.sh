@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# いずれかのコマンドが失敗すると、非0のステータスで終了する
+set -e
+
 export PATH="./node_modules/.bin:$PATH"
 
 # 型テスト
