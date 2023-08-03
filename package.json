@@ -8,7 +8,8 @@
   "scripts": {
     "build":      "nest build",
     "format":     "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start:dev":  "docker compose -f docker-compose.db.yaml up --build && env-cmd -f ./.env/.env.dev nest start",
+    "start:dev":  "docker compose -f docker-compose.db.yaml up -d --build && env-cmd -f ./.env/.env.dev nest start",
+    "start:nest": "env-cmd -f ./.env/.env.dev nest start",
     "start:prod": "docker compose -f docker-compose.prod.yaml up --build",
     "start:ci":   "docker compose -f docker-compose.ci.yaml up --build",
     "down":       "docker compose -f docker-compose.db.yaml down; docker compose -f docker-compose.prod.yaml down; docker compose -f docker-compose.ci.yaml;",

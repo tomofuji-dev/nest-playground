@@ -26,20 +26,19 @@ USER node
 COPY --chown=node:node package*.json yarn*.lock ./
 RUN npm ci --only=production && npm cache clean --force
 
-#### ci ####
-FROM base as ci
-RUN npm install --only=development && npm cache clean --force
-COPY --chown=node:node . .
-RUN chmod +x ./docker/wait-for-postgres.sh ./docker/ci.entrypoint.sh
-
-ENTRYPOINT ["/usr/bin/tini", "--"]
-CMD ./docker/wait-for-postgres.sh $DB_HOST ./docker/ci.entrypoint.sh
-
 ### builder ###
 FROM base as build
 RUN npm install --only=development && npm cache clean --force
 COPY --chown=node:node . .
 RUN npm run build
+# prisma migrate
+
+#### ci ####
+FROM build as ci
+RUN chmod +x ./docker/wait-for-postgres.sh ./docker/ci.entrypoint.sh
+
+ENTRYPOINT ["/usr/bin/tini", "--"]
+CMD ./docker/wait-for-postgres.sh $DB_HOST ./docker/ci.entrypoint.sh
 
 #### prod ####
 FROM base as prod

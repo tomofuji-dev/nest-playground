@@ -11,9 +11,6 @@ tsc --noEmit
 # lint
 npm run lint
 
-# build
-npm run build
-
 # unit test
 env-cmd -f ./.env/.env.ci jest
 
