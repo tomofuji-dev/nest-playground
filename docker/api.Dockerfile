@@ -44,5 +44,8 @@ RUN npm run build
 #### prod ####
 FROM base as prod
 COPY --chown=node:node --from=build /app/dist ./dist
+COPY --chown=node:node ./docker/wait-for-postgres.sh ./wait-for-postgres.sh
+RUN chmod +x ./wait-for-postgres.sh
+
 ENTRYPOINT ["/usr/bin/tini", "--"]
-CMD ["node", "dist/main"]
+CMD ./wait-for-postgres.sh $DB_HOST node dist/main
