@@ -32,6 +32,13 @@ RUN npm install --only=development && npm cache clean --force
 COPY --chown=node:node . .
 RUN npm run build
 
+#### dev ####
+FROM build as dev
+RUN chmod +x ./docker/wait-for-postgres.sh ./docker/dev.entrypoint.sh
+
+ENTRYPOINT ["/usr/bin/tini", "--"]
+CMD ./docker/wait-for-postgres.sh $DB_HOST ./docker/dev.entrypoint.sh
+
 #### ci ####
 FROM build as ci
 RUN chmod +x ./docker/wait-for-postgres.sh ./docker/ci.entrypoint.sh
