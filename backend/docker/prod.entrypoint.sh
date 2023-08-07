@@ -6,5 +6,8 @@ set -e
 # migration
 npx prisma migrate deploy
 
+# generate Prisma Client
+npx prisma generate
+
 # server start
 node dist/src/main
