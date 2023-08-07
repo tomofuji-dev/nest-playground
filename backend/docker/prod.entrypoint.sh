@@ -7,4 +7,4 @@ set -e
 npx prisma migrate deploy
 
 # server start
-node dist/main
+node dist/src/main
