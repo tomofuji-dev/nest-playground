@@ -22,7 +22,6 @@
     "test:e2e": "env-cmd -f ./.env/.env.dev jest --config ./test/jest-e2e.json",
     "migrate:dev": "env-cmd -f ./.env/.env.dev prisma migrate dev --preview-feature",
     "prisma:reset": "env-cmd -f ./.env/.env.dev prisma migrate reset && env-cmd -f ./.env/.env.dev prisma migrate dev --preview-feature",
-    "prisma:seed": "env-cmd -f ./.env/.env.dev prisma db seed",
     "prisma:studio": "env-cmd -f ./.env/.env.dev prisma studio"
   },
   "dependencies": {
