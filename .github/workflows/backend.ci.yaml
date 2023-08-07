@@ -21,7 +21,7 @@ jobs:
 
       - name: Check container status
         run: |
-          status=$(docker inspect api --format='{{.State.ExitCode}}')
+          status=$(docker inspect api_ci --format='{{.State.ExitCode}}')
           if [ "$status" -ne "0" ]; then
             exit $status
           fi
