@@ -19,5 +19,12 @@ jobs:
       - name: Follow logs
         run: docker-compose -f backend/docker-compose.ci.yaml logs -f api
 
+      - name: Check container status
+        run: |
+          status=$(docker inspect api --format='{{.State.ExitCode}}')
+          if [ "$status" -ne "0" ]; then
+            exit $status
+          fi
+
       - name: Stop Docker Compose
         run: docker-compose -f backend/docker-compose.ci.yaml down
