@@ -8,6 +8,12 @@ export PATH="./node_modules/.bin:$PATH"
 # migration
 npx prisma migrate deploy
 
+# generate Prisma Client
+npx prisma generate
+
+# seeding
+npx prisma db seed
+
 # 型テスト
 tsc --noEmit
 
