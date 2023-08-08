@@ -10,6 +10,8 @@ services:
       - db
     env_file:
       - ./.env/.env.prod
+    networks:
+      - transcendence-network
 
   db:
     container_name: db_ci
@@ -20,6 +22,12 @@ services:
       - ./.env/.env.prod
     volumes:
       - db-ci:/var/lib/postgresql/data
+    networks:
+      - transcendence-network
 
 volumes:
   db-ci:
+
+networks:
+  transcendence-network:
+    driver: bridge
