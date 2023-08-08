@@ -38,6 +38,13 @@ FROM build as dev
 ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD npx next dev -p $NEXT_PORT
 
+#### test ####
+FROM build as test
+RUN chmod +x ./docker/wait-for-backend.sh ./docker/test.entrypoint.sh
+
+ENTRYPOINT ["/usr/bin/tini", "--"]
+CMD ./docker/wait-for-backend.sh && ./docker/test.entrypoint.sh
+
 #### prod ####
 FROM build as prod
 RUN chmod +x ./docker/wait-for-backend.sh
