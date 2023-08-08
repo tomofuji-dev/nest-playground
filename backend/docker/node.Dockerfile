@@ -24,7 +24,6 @@ RUN groupadd --gid 1000 node \
 WORKDIR /app
 USER node
 COPY --chown=node:node package*.json yarn*.lock ./
-RUN npm ci --only=production && npm cache clean --force
 
 ### build ###
 FROM base as build
@@ -39,12 +38,12 @@ RUN chmod +x ./docker/wait-for-postgres.sh ./docker/dev.entrypoint.sh
 ENTRYPOINT ["/usr/bin/tini", "--"]
 CMD ./docker/wait-for-postgres.sh $DB_HOST ./docker/dev.entrypoint.sh
 
-#### ci ####
-FROM build as ci
-RUN chmod +x ./docker/wait-for-postgres.sh ./docker/ci.entrypoint.sh
+#### test ####
+FROM build as test
+RUN chmod +x ./docker/wait-for-postgres.sh ./docker/test.entrypoint.sh
 
 ENTRYPOINT ["/usr/bin/tini", "--"]
-CMD ./docker/wait-for-postgres.sh $DB_HOST ./docker/ci.entrypoint.sh
+CMD ./docker/wait-for-postgres.sh $DB_HOST ./docker/test.entrypoint.sh
 
 #### prod ####
 FROM build as prod

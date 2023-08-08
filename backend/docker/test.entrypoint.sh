@@ -21,7 +21,7 @@ tsc --noEmit
 npm run lint
 
 # unit test
-env-cmd -f ./.env/.env.prod jest
+env-cmd -f ./.env/.env.test jest
 
 # e2e test
-env-cmd -f ./.env/.env.prod jest --config ./test/jest-e2e.json
+env-cmd -f ./.env/.env.test jest --config ./test/jest-e2e.json

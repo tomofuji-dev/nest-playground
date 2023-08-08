@@ -24,7 +24,7 @@ RUN groupadd --gid 1000 node \
 WORKDIR /app
 USER node
 COPY --chown=node:node package*.json yarn*.lock ./
-RUN npm ci --only=production && npm cache clean --force
+RUN npm test --only=production && npm cache clean --force
 
 ### build ###
 FROM base as build

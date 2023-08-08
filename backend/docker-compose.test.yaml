@@ -1,32 +1,32 @@
 version: '3'
 services:
   api:
-    container_name: api_ci
+    container_name: api_test
     build:
       context: .
       dockerfile: ./docker/node.Dockerfile
-      target: ci
+      target: test
     depends_on:
       - db
     env_file:
-      - ./.env/.env.prod
+      - ./.env/.env.test
     networks:
       - transcendence-network
 
   db:
-    container_name: db_ci
+    container_name: db_test
     build:
       context: .
       dockerfile: ./docker/db.Dockerfile
     env_file:
-      - ./.env/.env.prod
+      - ./.env/.env.test
     volumes:
-      - db-ci:/var/lib/postgresql/data
+      - db-test:/var/lib/postgresql/data
     networks:
       - transcendence-network
 
 volumes:
-  db-ci:
+  db-test:
 
 networks:
   transcendence-network:
