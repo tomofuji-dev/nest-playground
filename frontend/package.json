@@ -25,6 +25,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "env-cmd": "^10.1.0"
+    "env-cmd": "^10.1.0",
+    "mini-css-extract-plugin": "^2.7.6"
   }
 }
