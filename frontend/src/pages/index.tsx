@@ -1,5 +1,13 @@
+import { apiClient } from '@/lib/axios'
+
 function LandingPage() {
-  return <div>Welcome to Next.js!</div>;
+  return (
+    <button onClick={()=>{
+      apiClient.get('/health');
+    }}>
+      Click
+    </button>
+  );
 }
 
 export default LandingPage;

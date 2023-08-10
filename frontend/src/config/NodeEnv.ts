@@ -6,11 +6,11 @@ export enum NodeEnv {
 
 export const strToNodeEnv = (str: string): NodeEnv => {
   switch (str) {
-    case "DEV":
+    case "development":
       return NodeEnv.DEV;
-    case "PROD":
+    case "production":
       return NodeEnv.PROD;
-    case "TEST":
+    case "testing":
       return NodeEnv.TEST;
     default:
       throw new Error(`Unknown NodeEnv: ${str}`);
