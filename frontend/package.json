@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
-    "mini-css-extract-plugin": "^2.7.6"
+    "mini-css-extract-plugin": "^2.7.6",
+    "msw": "^1.2.3"
   }
 }
