@@ -10,14 +10,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: cd frontend
-        run: cd frontend
-
       - name: npm install
-        run: npm install
+        run: cd frontend && npm install
 
       - name: npm run build
-        run: npm run build
+        run: cd frontend && npm run build
 
       - name: npm run test
-        run: npm run test
+        run: cd frontend && npm run test
