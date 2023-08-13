@@ -1,5 +1,5 @@
 {
-  "name": "transcendence-playground",
+  "name": "transcendence-backend",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -8,11 +8,11 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start:dev": "docker compose -f docker-compose.dev.yaml up --build",
-    "start:prod": "docker compose -f docker-compose.prod.yaml up --build",
-    "start:ci": "docker compose -f docker-compose.ci.yaml up --build",
-    "down": "docker compose -f docker-compose.dev.yaml down; docker compose -f docker-compose.prod.yaml down; docker compose -f docker-compose.ci.yaml;",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "start:dev": "docker compose -f docker-compose.dev.yaml -p transcendence up --build",
+    "start:prod": "docker compose -f docker-compose.prod.yaml -p transcendence up --build",
+    "start:test": "docker compose -f docker-compose.test.yaml -p transcendence up --build",
+    "down": "docker compose -f docker-compose.dev.yaml down; docker compose -f docker-compose.prod.yaml down; docker compose -f docker-compose.test.yaml down;",
     "type": "tsc --noEmit",
     "test": "env-cmd -f ./.env/.env.local jest",
     "test:watch": "env-cmd -f ./.env/.env.local jest --watch",
