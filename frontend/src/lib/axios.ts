@@ -10,7 +10,7 @@ export const apiClient = Axios.create({
 
 apiClient.interceptors.response.use(
   (response) => {
-    return response.data;
+    return response;
   },
   (error) => {
     return Promise.reject(error);
