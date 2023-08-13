@@ -8,7 +8,10 @@
     "start:dev": "docker compose -f docker-compose.dev.yaml -p transcendence up --build",
     "start:prod": "docker compose -f docker-compose.prod.yaml -p transcendence up --build",
     "start:test": "docker compose -f docker-compose.test.yaml -p transcendence up --build",
-    "down": "docker compose -f docker-compose.dev.yaml down; docker compose -f docker-compose.prod.yaml down"
+    "down": "docker compose -f docker-compose.dev.yaml down; docker compose -f docker-compose.prod.yaml down",
+    "test": "env-cmd -f ./.env/.env.test jest",
+    "test:watch": "env-cmd -f ./.env/.env.test jest --watch",
+    "test:cov": "env-cmd -f ./.env/.env.test jest --coverage"
   },
   "dependencies": {
     "@types/node": "^20.4.8",
@@ -27,7 +30,10 @@
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
+    "jest": "^29.6.2",
+    "jest-environment-jsdom": "^29.6.2",
     "mini-css-extract-plugin": "^2.7.6",
-    "msw": "^1.2.3"
+    "msw": "^1.2.3",
+    "ts-jest": "^29.1.1"
   }
 }
