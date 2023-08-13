@@ -8,7 +8,6 @@ describe('Landing Page', () => {
   it('should show OK when click button', async () => {
     render(<LandingPage />);
 
-    // ボタンをクリック
     await act(async () => {
       userEvent.click(screen.getByText('Click'));
     });
