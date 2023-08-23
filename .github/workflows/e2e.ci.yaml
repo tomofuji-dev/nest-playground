@@ -1,4 +1,4 @@
-name: End-to-End Tests
+name: End-to-End test
 
 on: [push, pull_request]
 
@@ -13,14 +13,17 @@ jobs:
       - name: Install dependencies
         run: cd ./e2e && npm install
 
-      - name: Start production servers
-        run: cd ./e2e && npm run start:prod &
+      - name: Start Backend Docker Compose
+        run: docker-compose -f backend/docker-compose.prod.yaml up -d
+
+      - name: Start Frontend Docker Compose
+        run: docker-compose -f frontend/docker-compose.prod.yaml up -d
 
       - name: Wait for localhost to be ready
         uses: jakepartusch/wait-for-netlify-action@v1
         with:
           site_name: "localhost"
-          site_port: 3000
+          site_port: 5000
 
       - name: Run Cypress tests
         run: cd ./e2e && npm run cypress:run
