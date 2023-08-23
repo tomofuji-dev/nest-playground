@@ -42,7 +42,7 @@ FROM build as test
 RUN chmod +x ./docker/wait-for-backend.sh ./docker/test.entrypoint.sh
 
 ENTRYPOINT ["/usr/bin/tini", "--"]
-CMD ./docker/wait-for-backend.sh && ./docker/test.entrypoint.sh
+CMD ./docker/test.entrypoint.sh
 
 #### prod ####
 FROM build as prod
