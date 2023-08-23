@@ -1,0 +1,26 @@
+name: End-to-End Tests
+
+on: [push, pull_request]
+
+jobs:
+  e2e-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: cd ./e2e && npm install
+
+      - name: Start production servers
+        run: cd ./e2e && npm run start:prod &
+
+      - name: Wait for localhost to be ready
+        uses: jakepartusch/wait-for-netlify-action@v1
+        with:
+          site_name: "localhost"
+          site_port: 3000
+
+      - name: Run Cypress tests
+        run: cd ./e2e && npm run cypress:run
