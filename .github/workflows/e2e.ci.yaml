@@ -19,11 +19,5 @@ jobs:
       - name: Start Frontend Docker Compose
         run: docker-compose -f frontend/docker-compose.prod.yaml up -d
 
-      - name: Wait for localhost to be ready
-        uses: jakepartusch/wait-for-netlify-action@v1
-        with:
-          site_name: "localhost"
-          site_port: 5000
-
       - name: Run Cypress tests
         run: cd ./e2e && npm run cypress:run
