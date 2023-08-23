@@ -6,7 +6,9 @@
   "scripts": {
     "start:dev": "(cd ../backend && npm run start:dev &) && (cd ../frontend && npm run start:dev &)",
     "start:prod": "(cd ../backend && npm run start:prod &) && (cd ../frontend && npm run start:prod &)",
-    "down": "cd ../backend && npm run down; cd ../frontend && npm run down"
+    "down": "cd ../backend && npm run down; cd ../frontend && npm run down",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "author": "",
   "license": "ISC"
