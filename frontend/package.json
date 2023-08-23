@@ -8,7 +8,7 @@
     "start:dev": "docker compose -f docker-compose.dev.yaml -p transcendence up --build",
     "start:prod": "docker compose -f docker-compose.prod.yaml -p transcendence up --build",
     "start:test": "docker compose -f docker-compose.test.yaml -p transcendence up --build",
-    "down": "docker compose -f docker-compose.dev.yaml down; docker compose -f docker-compose.prod.yaml down",
+    "down": "docker compose -f docker-compose.dev.yaml -p transcendence down; docker compose -f docker-compose.prod.yaml -p transcendence down; docker compose -f docker-compose.test.yaml -p transcendence down",
     "test": "env-cmd -f ./.env/.env.test jest",
     "test:watch": "env-cmd -f ./.env/.env.test jest --watch",
     "test:cov": "env-cmd -f ./.env/.env.test jest --coverage"

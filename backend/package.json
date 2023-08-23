@@ -12,7 +12,7 @@
     "start:dev": "docker compose -f docker-compose.dev.yaml -p transcendence up --build",
     "start:prod": "docker compose -f docker-compose.prod.yaml -p transcendence up --build",
     "start:test": "docker compose -f docker-compose.test.yaml -p transcendence up --build",
-    "down": "docker compose -f docker-compose.dev.yaml down; docker compose -f docker-compose.prod.yaml down; docker compose -f docker-compose.test.yaml down;",
+    "down": "docker compose -f docker-compose.dev.yaml -p transcendence down; docker compose -f docker-compose.prod.yaml -p transcendence down; docker compose -f docker-compose.test.yaml -p transcendence down;",
     "type": "tsc --noEmit",
     "test": "env-cmd -f ./.env/.env.local jest",
     "test:watch": "env-cmd -f ./.env/.env.local jest --watch",
