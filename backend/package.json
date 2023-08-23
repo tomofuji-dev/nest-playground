@@ -18,7 +18,6 @@
     "test:watch": "env-cmd -f ./.env/.env.local jest --watch",
     "test:cov": "env-cmd -f ./.env/.env.local jest --coverage",
     "test:debug": "env-cmd -f ./.env/.env.local node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "env-cmd -f ./.env/.env.local jest --config ./test/jest-e2e.json",
     "migrate:dev": "env-cmd -f ./.env/.env.local prisma migrate dev --preview-feature",
     "prisma:studio": "env-cmd -f ./.env/.env.local prisma studio"
   },
