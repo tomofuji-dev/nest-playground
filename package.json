@@ -9,7 +9,7 @@
     "down": "cd ./backend && npm run down; cd ./frontend && npm run down"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css,md}": "prettier --write",
+    "*.{js,jsx,ts,tsx,json,css,md}": "npx prettier --write",
     "backend/*": "cd backend && npm run lint",
     "frontend/*": "cd frontend && npm run lint"
   },
