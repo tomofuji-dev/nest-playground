@@ -5,6 +5,7 @@
   "scripts": {
     "build": "env-cmd -f ./.env/.env.prod next build",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "start:dev": "docker compose -f docker-compose.dev.yaml -p transcendence up --build",
     "start:prod": "docker compose -f docker-compose.prod.yaml -p transcendence up --build",
     "start:test": "docker compose -f docker-compose.test.yaml -p transcendence up --build",
