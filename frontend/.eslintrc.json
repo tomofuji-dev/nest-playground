@@ -2,8 +2,7 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:import/recommended",
-    "plugin:import/warnings",
-    "prettier"
+    "plugin:import/warnings"
   ],
   "rules": {
     "import/order": [

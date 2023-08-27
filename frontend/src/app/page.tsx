@@ -1,7 +1,7 @@
 'use client'
 
-import { apiClient } from '@/lib/axios/apiClient'
 import { useState } from 'react'
+import { apiClient } from '@/lib/axios/apiClient'
 
 const LandingPage = () => {
   const [data, setData] = useState(null)
