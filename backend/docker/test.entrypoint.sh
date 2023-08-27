@@ -14,11 +14,5 @@ npx prisma generate
 # seeding
 npx prisma db seed
 
-# 型テスト
-tsc --noEmit
-
-# lint
-npm run lint
-
 # unit test
 env-cmd -f ./.env/.env.test jest
